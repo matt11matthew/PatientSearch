@@ -1,0 +1,457 @@
+[
+  {
+    "gender": "Male",
+    "age": 9,
+    "medicalHistory": "no",
+    "symptomsOnset": "2024-02-19T10:57:41.228Z",
+    "patientNumber": 1,
+    "cardiovascularRiskFactors": "no",
+    "medsPriorToArrival": "no",
+    "physicalExam": {
+      "heartRate": "no",
+      "killipClass": "no"
+    }
+  },
+  {
+    "gender": "Female",
+    "age": 58,
+    "medicalHistory": "yes",
+    "symptomsOnset": "2024-01-25T09:08:59.194Z",
+    "patientNumber": 1,
+    "cardiovascularRiskFactors": "no",
+    "medsPriorToArrival": "yes",
+    "physicalExam": {
+      "heartRate": "no",
+      "killipClass": "yes"
+    }
+  },
+  {
+    "gender": "Female",
+    "age": 59,
+    "medicalHistory": "yes",
+    "symptomsOnset": "2024-01-31T03:31:50.136Z",
+    "patientNumber": 2,
+    "cardiovascularRiskFactors": "no",
+    "medsPriorToArrival": "yes",
+    "physicalExam": {
+      "heartRate": "yes",
+      "killipClass": "no"
+    }
+  },
+  {
+    "gender": "Male",
+    "age": 70,
+    "medicalHistory": "no",
+    "symptomsOnset": "2024-03-03T11:51:30.689Z",
+    "patientNumber": 3,
+    "cardiovascularRiskFactors": "yes",
+    "medsPriorToArrival": "no",
+    "physicalExam": {
+      "heartRate": "no",
+      "killipClass": "no"
+    }
+  },
+  {
+    "gender": "Male",
+    "age": 76,
+    "medicalHistory": "yes",
+    "symptomsOnset": "2024-01-07T12:26:22.820Z",
+    "patientNumber": 4,
+    "cardiovascularRiskFactors": "yes",
+    "medsPriorToArrival": "yes",
+    "physicalExam": {
+      "heartRate": "no",
+      "killipClass": "no"
+    }
+  },
+  {
+    "gender": "Male",
+    "age": 39,
+    "medicalHistory": "yes",
+    "symptomsOnset": "2023-12-29T08:59:38.971Z",
+    "patientNumber": 5,
+    "cardiovascularRiskFactors": "no",
+    "medsPriorToArrival": "yes",
+    "physicalExam": {
+      "heartRate": "yes",
+      "killipClass": "yes"
+    }
+  },
+  {
+    "gender": "Female",
+    "age": 64,
+    "medicalHistory": "no",
+    "symptomsOnset": "2023-12-29T06:08:47.885Z",
+    "patientNumber": 6,
+    "cardiovascularRiskFactors": "no",
+    "medsPriorToArrival": "yes",
+    "physicalExam": {
+      "heartRate": "yes",
+      "killipClass": "no"
+    }
+  },
+  {
+    "gender": "Male",
+    "age": 33,
+    "medicalHistory": "yes",
+    "symptomsOnset": "2024-01-21T16:16:36.561Z",
+    "patientNumber": 7,
+    "cardiovascularRiskFactors": "no",
+    "medsPriorToArrival": "yes",
+    "physicalExam": {
+      "heartRate": "yes",
+      "killipClass": "yes"
+    }
+  },
+  {
+    "gender": "Male",
+    "age": 77,
+    "medicalHistory": "yes",
+    "symptomsOnset": "2024-01-30T12:41:02.236Z",
+    "patientNumber": 8,
+    "cardiovascularRiskFactors": "yes",
+    "medsPriorToArrival": "yes",
+    "physicalExam": {
+      "heartRate": "yes",
+      "killipClass": "yes"
+    }
+  },
+  {
+    "gender": "Female",
+    "age": 3,
+    "medicalHistory": "yes",
+    "symptomsOnset": "2024-01-18T00:48:30.833Z",
+    "patientNumber": 9,
+    "cardiovascularRiskFactors": "no",
+    "medsPriorToArrival": "yes",
+    "physicalExam": {
+      "heartRate": "yes",
+      "killipClass": "yes"
+    }
+  },
+  {
+    "gender": "Male",
+    "age": 43,
+    "medicalHistory": "yes",
+    "symptomsOnset": "2024-02-01T14:57:07.307Z",
+    "patientNumber": 10,
+    "cardiovascularRiskFactors": "no",
+    "medsPriorToArrival": "no",
+    "physicalExam": {
+      "heartRate": "no",
+      "killipClass": "yes"
+    }
+  },
+  {
+    "gender": "Female",
+    "age": 66,
+    "medicalHistory": "no",
+    "symptomsOnset": "2024-02-13T09:15:12.618Z",
+    "patientNumber": 10,
+    "cardiovascularRiskFactors": "yes",
+    "medsPriorToArrival": "yes",
+    "physicalExam": {
+      "heartRate": "yes",
+      "killipClass": "yes"
+    }
+  },
+  {
+    "gender": "Male",
+    "age": 42,
+    "medicalHistory": "no",
+    "symptomsOnset": "2024-01-19T02:01:01.784Z",
+    "patientNumber": 11,
+    "cardiovascularRiskFactors": "no",
+    "medsPriorToArrival": "no",
+    "physicalExam": {
+      "heartRate": "no",
+      "killipClass": "yes"
+    }
+  },
+  {
+    "gender": "Female",
+    "age": 55,
+    "medicalHistory": "yes",
+    "symptomsOnset": "2024-02-10T17:50:17.416Z",
+    "patientNumber": 12,
+    "cardiovascularRiskFactors": "yes",
+    "medsPriorToArrival": "yes",
+    "physicalExam": {
+      "heartRate": "no",
+      "killipClass": "no"
+    }
+  },
+  {
+    "gender": "Female",
+    "age": 24,
+    "medicalHistory": "no",
+    "symptomsOnset": "2024-02-11T04:54:07.792Z",
+    "patientNumber": 13,
+    "cardiovascularRiskFactors": "no",
+    "medsPriorToArrival": "no",
+    "physicalExam": {
+      "heartRate": "yes",
+      "killipClass": "no"
+    }
+  },
+  {
+    "gender": "Male",
+    "age": 93,
+    "medicalHistory": "yes",
+    "symptomsOnset": "2024-03-28T10:49:15.974Z",
+    "patientNumber": 14,
+    "cardiovascularRiskFactors": "yes",
+    "medsPriorToArrival": "yes",
+    "physicalExam": {
+      "heartRate": "no",
+      "killipClass": "no"
+    }
+  },
+  {
+    "gender": "Male",
+    "age": 82,
+    "medicalHistory": "no",
+    "symptomsOnset": "2023-12-16T18:19:11.342Z",
+    "patientNumber": 14,
+    "cardiovascularRiskFactors": "no",
+    "medsPriorToArrival": "yes",
+    "physicalExam": {
+      "heartRate": "no",
+      "killipClass": "no"
+    }
+  },
+  {
+    "gender": "Male",
+    "age": 84,
+    "medicalHistory": "no",
+    "symptomsOnset": "2024-03-21T15:30:46.078Z",
+    "patientNumber": 15,
+    "cardiovascularRiskFactors": "yes",
+    "medsPriorToArrival": "no",
+    "physicalExam": {
+      "heartRate": "yes",
+      "killipClass": "no"
+    }
+  },
+  {
+    "gender": "Female",
+    "age": 86,
+    "medicalHistory": "no",
+    "symptomsOnset": "2023-12-13T14:07:27.236Z",
+    "patientNumber": 16,
+    "cardiovascularRiskFactors": "yes",
+    "medsPriorToArrival": "yes",
+    "physicalExam": {
+      "heartRate": "yes",
+      "killipClass": "no"
+    }
+  },
+  {
+    "gender": "Female",
+    "age": 75,
+    "medicalHistory": "yes",
+    "symptomsOnset": "2023-12-15T18:44:40.623Z",
+    "patientNumber": 17,
+    "cardiovascularRiskFactors": "no",
+    "medsPriorToArrival": "yes",
+    "physicalExam": {
+      "heartRate": "no",
+      "killipClass": "yes"
+    }
+  },
+  {
+    "gender": "Female",
+    "age": 0,
+    "medicalHistory": "no",
+    "symptomsOnset": "2024-03-22T08:08:15.924Z",
+    "patientNumber": 18,
+    "cardiovascularRiskFactors": "no",
+    "medsPriorToArrival": "yes",
+    "physicalExam": {
+      "heartRate": "yes",
+      "killipClass": "no"
+    }
+  },
+  {
+    "gender": "Female",
+    "age": 4,
+    "medicalHistory": "no",
+    "symptomsOnset": "2024-03-06T01:19:37.275Z",
+    "patientNumber": 19,
+    "cardiovascularRiskFactors": "yes",
+    "medsPriorToArrival": "no",
+    "physicalExam": {
+      "heartRate": "yes",
+      "killipClass": "yes"
+    }
+  },
+  {
+    "gender": "Male",
+    "age": 33,
+    "medicalHistory": "yes",
+    "symptomsOnset": "2023-12-14T08:20:17.013Z",
+    "patientNumber": 19,
+    "cardiovascularRiskFactors": "yes",
+    "medsPriorToArrival": "no",
+    "physicalExam": {
+      "heartRate": "yes",
+      "killipClass": "yes"
+    }
+  },
+  {
+    "gender": "Male",
+    "age": 0,
+    "medicalHistory": "yes",
+    "symptomsOnset": "2024-03-16T19:42:35.802Z",
+    "patientNumber": 20,
+    "cardiovascularRiskFactors": "no",
+    "medsPriorToArrival": "yes",
+    "physicalExam": {
+      "heartRate": "yes",
+      "killipClass": "yes"
+    }
+  },
+  {
+    "gender": "Female",
+    "age": 52,
+    "medicalHistory": "yes",
+    "symptomsOnset": "2024-03-06T15:08:19.298Z",
+    "patientNumber": 21,
+    "cardiovascularRiskFactors": "no",
+    "medsPriorToArrival": "no",
+    "physicalExam": {
+      "heartRate": "no",
+      "killipClass": "yes"
+    }
+  },
+  {
+    "gender": "Male",
+    "age": 90,
+    "medicalHistory": "no",
+    "symptomsOnset": "2024-02-23T07:30:03.014Z",
+    "patientNumber": 21,
+    "cardiovascularRiskFactors": "yes",
+    "medsPriorToArrival": "no",
+    "physicalExam": {
+      "heartRate": "yes",
+      "killipClass": "yes"
+    }
+  },
+  {
+    "gender": "Male",
+    "age": 67,
+    "medicalHistory": "yes",
+    "symptomsOnset": "2024-02-23T03:21:04.108Z",
+    "patientNumber": 22,
+    "cardiovascularRiskFactors": "yes",
+    "medsPriorToArrival": "yes",
+    "physicalExam": {
+      "heartRate": "no",
+      "killipClass": "no"
+    }
+  },
+  {
+    "gender": "Male",
+    "age": 45,
+    "medicalHistory": "yes",
+    "symptomsOnset": "2024-03-17T08:00:16.074Z",
+    "patientNumber": 23,
+    "cardiovascularRiskFactors": "yes",
+    "medsPriorToArrival": "no",
+    "physicalExam": {
+      "heartRate": "no",
+      "killipClass": "no"
+    }
+  },
+  {
+    "gender": "Male",
+    "age": 60,
+    "medicalHistory": "yes",
+    "symptomsOnset": "2024-01-23T12:45:52.273Z",
+    "patientNumber": 24,
+    "cardiovascularRiskFactors": "no",
+    "medsPriorToArrival": "yes",
+    "physicalExam": {
+      "heartRate": "no",
+      "killipClass": "yes"
+    }
+  },
+  {
+    "gender": "Male",
+    "age": 21,
+    "medicalHistory": "no",
+    "symptomsOnset": "2024-02-23T08:58:17.614Z",
+    "patientNumber": 25,
+    "cardiovascularRiskFactors": "yes",
+    "medsPriorToArrival": "yes",
+    "physicalExam": {
+      "heartRate": "no",
+      "killipClass": "no"
+    }
+  },
+  {
+    "gender": "Male",
+    "age": 67,
+    "medicalHistory": "no",
+    "symptomsOnset": "2023-12-16T02:43:59.194Z",
+    "patientNumber": 26,
+    "cardiovascularRiskFactors": "no",
+    "medsPriorToArrival": "yes",
+    "physicalExam": {
+      "heartRate": "yes",
+      "killipClass": "no"
+    }
+  },
+  {
+    "gender": "Female",
+    "age": 78,
+    "medicalHistory": "no",
+    "symptomsOnset": "2023-12-22T17:41:26.862Z",
+    "patientNumber": 27,
+    "cardiovascularRiskFactors": "no",
+    "medsPriorToArrival": "no",
+    "physicalExam": {
+      "heartRate": "no",
+      "killipClass": "no"
+    }
+  },
+  {
+    "gender": "Female",
+    "age": 29,
+    "medicalHistory": "no",
+    "symptomsOnset": "2024-03-05T09:15:19.981Z",
+    "patientNumber": 28,
+    "cardiovascularRiskFactors": "no",
+    "medsPriorToArrival": "yes",
+    "physicalExam": {
+      "heartRate": "yes",
+      "killipClass": "yes"
+    }
+  },
+  {
+    "gender": "Male",
+    "age": 76,
+    "medicalHistory": "no",
+    "symptomsOnset": "2024-02-27T14:02:46.960Z",
+    "patientNumber": 29,
+    "cardiovascularRiskFactors": "no",
+    "medsPriorToArrival": "no",
+    "physicalExam": {
+      "heartRate": "yes",
+      "killipClass": "yes"
+    }
+  },
+  {
+    "gender": "Male",
+    "age": 50,
+    "medicalHistory": "no",
+    "symptomsOnset": "2024-02-11T00:49:56.687Z",
+    "patientNumber": 30,
+    "cardiovascularRiskFactors": "yes",
+    "medsPriorToArrival": "yes",
+    "physicalExam": {
+      "heartRate": "no",
+      "killipClass": "yes"
+    }
+  }
+]
