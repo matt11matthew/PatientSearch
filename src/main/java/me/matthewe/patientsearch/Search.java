@@ -3,6 +3,7 @@ package me.matthewe.patientsearch;
 public class Search {
     Gender gender;
     private int age;
+    private Patient tempPatient;
 
     public Search(Gender gender, int age) {
         this.gender = gender;
@@ -16,6 +17,12 @@ public class Search {
     public Search(Patient patient) {
         this.gender = patient.getGender();
         this.age = patient.getAge();
+        this.tempPatient = patient;
+
+    }
+
+    public Patient getTempPatient() {
+        return tempPatient;
     }
 
     public Gender getGender() {

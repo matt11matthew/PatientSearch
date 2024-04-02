@@ -40,12 +40,15 @@ public class Main {
             Patient patient = Patient.fromJson(element);
             patientGraph.insert(patient);
 
+            if (patient.isCardiovascularRiskFactors()&&patient.isMedsPriorToArrival() && patient.isMale()&&patient.isOver65()){
+                System.err.println(patient);
+            }
         }
         long time = System.currentTimeMillis();
         patientGraph.print();
 
 
-        HashSet<Integer> dfs = patientGraph.dfs(new Search(Gender.FEMALE, 40));
+        HashSet<Integer> dfs = patientGraph.dfs(new Search(new Patient(Gender.MALE, 30,true, 0L, 1,false,true, new Patient.PhysicalExam(true,true))));
         System.out.println((System.currentTimeMillis())-time+"ms");
         if ((dfs == null) || dfs.isEmpty()){
             System.err.println("No results found");
@@ -58,5 +61,9 @@ public class Main {
 
         String json = GSON.toJson(patientGraph);
         System.out.println(json);
+
+        for (Integer id : Arrays.asList(35, 23, 28, 30)) {
+            System.out.println(patientGraph.getById(id));
+        }
     }
 }

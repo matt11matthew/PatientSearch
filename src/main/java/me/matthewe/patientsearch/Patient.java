@@ -108,6 +108,10 @@ public class Patient {
         return !isMale();
     }
 
+    public boolean isOver65() {
+        return age>=65;
+    }
+
     public  static class PhysicalExam{
         private boolean heartRate;
         private boolean killipClass;

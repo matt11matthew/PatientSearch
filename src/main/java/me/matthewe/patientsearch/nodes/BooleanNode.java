@@ -11,7 +11,9 @@ public abstract class BooleanNode  extends Node {
 
     public BooleanNode(boolean value) {
         this.value = value;
-    }
+        this.left=null;
+        this.right=null;
+}
 
     public boolean isValue() {
         return value;

@@ -23,7 +23,7 @@ public abstract class Node< A extends Node,B extends Node> {
         if (patientIds.isEmpty()) {
             builder.append(getClass().getSimpleName()+"{id=").append(id).append("}\n");
         } else {
-            builder.append("Leaf{id=").append(id).append(", patientIds=").append(patientIds).append("}\n");
+            builder.append(getClass().getSimpleName()+"{id=").append(id).append(", patientIds=").append(patientIds).append("}\n");
         }
 
         List<Node> children = new ArrayList<>();
@@ -136,34 +136,59 @@ public abstract class Node< A extends Node,B extends Node> {
         this.right = right;
         this.id = new Random().nextInt() + 1;
     }
-
     public boolean addChild(Patient patient) {
         // If the current node is a leaf, add the patient ID to this node
-        Search search = new Search(patient);
-        if (isLeaf() && matches(search)) {
-            patientIds.add(patient.getPatientNumber());
-            return true; // Patient added, end the recursion
+        if (isLeaf()) {
+            // Add the patient ID if the node matches the patient's criteria
+            if (matches(new Search(patient))) {
+                patientIds.add(patient.getPatientNumber());
+                return true; // Patient added, end the recursion
+            }
         } else {
             // If it's not a leaf, try to add the patient to the left and right subtrees
+            boolean added = false; // Flag to track if the patient was added in any subtree
             for (Node child : Arrays.asList(left, right)) {
-                if (child != null && child.matches(search)) {
+                if (child != null && child.matches(new Search(patient))) {
                     // If a child matches, try to add the patient there
-                    boolean added = child.addChild(patient);
-                    if (added) {
-                        return true; // Patient added successfully, propagate success back up
-                    }
-                    // Implicit backtracking occurs here as we finish one recursive call without success
-                    // and continue to the next child (if any)
+                    added |= child.addChild(patient); // Use bitwise OR to accumulate results from all children
                 }
             }
+            return added; // Return true if the patient was added to any subtree, otherwise false
         }
-        return false; // Patient could not be added to any subtree
+        return false; // Patient could not be added to any subtree or this node is not a leaf
     }
+
+
+//    public boolean addChild(Patient patient) {
+//        // If the current node is a leaf, add the patient ID to this node
+//        Search search = new Search(patient);
+//        if (isLeaf() && matches(search)) {
+//            patientIds.add(patient.getPatientNumber());
+//            return true; // Patient added, end the recursion
+//        } else {
+//            // If it's not a leaf, try to add the patient to the left and right subtrees
+//            for (Node child : Arrays.asList(left, right)) {
+//                if (child != null && child.matches(search)) {
+//                    // If a child matches, try to add the patient there
+//                    boolean added = child.addChild(patient);
+//                    if (added) {
+//                        return true; // Patient added successfully, propagate success back up
+//                    }
+//                    // Implicit backtracking occurs here as we finish one recursive call without success
+//                    // and continue to the next child (if any)
+//                }
+//            }
+//        }
+//        return false; // Patient could not be added to any subtree
+//    }
 
 // Ensure `matches` method in `Node` class is defined to use the `Search` object
 
+    private static Random RAND = new Random();
 
     public Node() {
+        id = RAND.nextInt(100000)+1;
+
     }
 
     public A getLeft() {
