@@ -9,6 +9,6 @@ import me.matthewe.patientsearch.types.Node;
 public class SymptomsOnsetNode  extends Node {
     @Override
     protected boolean matches(Search criteria) {
-        return true;
+        return false;
     }
 }
