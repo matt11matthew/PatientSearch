@@ -5,7 +5,7 @@ import me.matthewe.patientsearch.Search;
 
 import java.util.*;
 
-public abstract class Node< T extends Node> {
+public abstract class Node< A extends Node,B extends Node> {
     protected int id; //related to graph traversal
 //    protected V selfType;
 
@@ -14,8 +14,8 @@ public abstract class Node< T extends Node> {
         return patientIds;
     }
 
-    protected T left;
-    protected T right;
+    protected A left;
+    protected B right;
     public String toString(String prefix, boolean isTail) {
         StringBuilder builder = new StringBuilder();
 
@@ -131,7 +131,7 @@ public abstract class Node< T extends Node> {
         patientIds.add(id);
     }
 
-    public Node(T left, T right) {
+    public Node(A left, B right) {
         this.left = left;
         this.right = right;
         this.id = new Random().nextInt() + 1;
@@ -166,11 +166,11 @@ public abstract class Node< T extends Node> {
     public Node() {
     }
 
-    public T getLeft() {
+    public A getLeft() {
         return left;
     }
 
-    public T getRight() {
+    public B getRight() {
         return right;
     }
 

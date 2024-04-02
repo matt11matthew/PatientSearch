@@ -1,18 +1,12 @@
 package me.matthewe.patientsearch;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
+import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import me.matthewe.patientsearch.types.Node;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
@@ -22,7 +16,18 @@ public class Main {
 
     private Gson GSON;
     public Main() {
-        GSON = new GsonBuilder().setPrettyPrinting().create(); //Init json
+        GSON = new GsonBuilder().setPrettyPrinting().setExclusionStrategies(new ExclusionStrategy() {
+            @Override
+            public boolean shouldSkipField(FieldAttributes fieldAttributes) {
+
+                return fieldAttributes.getName().equalsIgnoreCase("table");
+            }
+
+            @Override
+            public boolean shouldSkipClass(Class<?> aClass) {
+                return false;
+            }
+        }).create(); //Init json
 
     }
     private PatientGraph patientGraph;
@@ -50,5 +55,8 @@ public class Main {
             Patient byId = patientGraph.getById(node);
             System.out.println(byId.toString());
         }
+
+        String json = GSON.toJson(patientGraph);
+        System.out.println(json);
     }
 }

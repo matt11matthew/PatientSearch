@@ -1,5 +1,6 @@
 package me.matthewe.patientsearch;
 
+import com.google.gson.annotations.Expose;
 import me.matthewe.patientsearch.types.AgeNode;
 import me.matthewe.patientsearch.types.GenderNode;
 import me.matthewe.patientsearch.types.Node;
@@ -7,7 +8,8 @@ import me.matthewe.patientsearch.types.Node;
 import javax.xml.validation.SchemaFactoryConfigurationError;
 import java.util.*;
 
-public class PatientGraph  extends Node< GenderNode> {
+public class PatientGraph  extends Node< GenderNode,GenderNode> {
+
 
     private Map<Integer, Patient> table =new HashMap<>();
     public PatientGraph() {

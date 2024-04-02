@@ -6,7 +6,7 @@ import me.matthewe.patientsearch.Search;
 import java.util.Random;
 import java.util.UUID;
 
-public class GenderNode  extends Node<AgeNode>{
+public class GenderNode  extends Node<AgeNode, AgeNode>{
 
     private Gender gender;
 
