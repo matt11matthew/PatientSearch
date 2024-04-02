@@ -48,22 +48,29 @@ public class Main {
         patientGraph.print();
 
 
-        HashSet<Integer> dfs = patientGraph.dfs(new Search(new Patient(Gender.MALE, 30,true, 0L, 1,false,true, new Patient.PhysicalExam(true,true))));
+        Search search = new Search(new Patient(Gender.MALE, 30, true, 0L, 1, true, true, new Patient.PhysicalExam(true, true)));
+
+        List<Node> dfs =new ArrayList<>();
+        patientGraph.dfs(search, dfs);
+
         System.out.println((System.currentTimeMillis())-time+"ms");
         if ((dfs == null) || dfs.isEmpty()){
             System.err.println("No results found");
             return;
         }
-        for (int node : dfs) {
-            Patient byId = patientGraph.getById(node);
-            System.out.println(byId.toString());
+        for (Node node : dfs) {
+            for (Object patientId : node.getPatientIds()) {
+
+                Patient byId = patientGraph.getById((int)patientId);
+                System.out.println(byId.toString());
+            }
         }
 
-        String json = GSON.toJson(patientGraph);
-        System.out.println(json);
-
-        for (Integer id : Arrays.asList(35, 23, 28, 30)) {
-            System.out.println(patientGraph.getById(id));
-        }
+//        String json = GSON.toJson(patientGraph);
+//        System.out.println(json);
+//
+//        for (Integer id : Arrays.asList(35, 23, 28, 30)) {
+//            System.out.println(patientGraph.getById(id));
+//        }
     }
 }

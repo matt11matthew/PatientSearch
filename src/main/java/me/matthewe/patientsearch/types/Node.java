@@ -41,29 +41,71 @@ public abstract class Node< A extends Node,B extends Node> {
 
         return builder.toString();
     }
-
-    public HashSet<Integer> dfs(Search criteria) {
-        // Create a HashSet to store patient IDs from matching leaf nodes
-        HashSet<Integer> matchedPatientIds = new HashSet<>();
-
-        // If this is a leaf node and matches the criteria, add its patient IDs to the result set
-        if ( this.matches(criteria)){
-
-            if (isLeaf() ) {
-                matchedPatientIds.addAll(this.patientIds);
-            } else {
-                // If not a leaf or doesn't match criteria, continue DFS traversal
-                if (this.left != null) {
-                    matchedPatientIds.addAll(this.left.dfs(criteria));
-                }
-                if (this.right != null) {
-                    matchedPatientIds.addAll(this.right.dfs(criteria));
-                }
+    public void dfs(Search criteria, List<Node> matchingNodes) {
+        // Check if this node matches the criteria
+        if (matches(criteria)) {
+            // If this is a leaf node, add it to the list of matching nodes
+            if (isLeaf()) {
+                matchingNodes.add(this);
             }
         }
 
-        return matchedPatientIds;
+        // Continue DFS traversal if this is not a leaf node
+        if (!isLeaf()) {
+            if (left!=null) {
+                if (left instanceof GenderNode || left instanceof AgeNode ) { //No backtracking  in relation to sex/age range
+                    if ( left.matches(criteria)) {
+
+                        left.dfs(criteria, matchingNodes);
+                    }
+
+                } else {
+                    left.dfs(criteria, matchingNodes);
+
+                }
+            }
+
+
+            if (right!=null) {
+                if (right instanceof GenderNode|| left instanceof AgeNode ) { //No backtracking  in relation to sex/age range
+                    if ( right.matches(criteria)) {
+
+                        right.dfs(criteria, matchingNodes);
+                    }
+
+                } else {
+                    right.dfs(criteria, matchingNodes);
+
+                }
+            }
+//            if (right != null) {
+//                right.dfs(criteria, matchingNodes);
+//            }
+        }
     }
+
+//    public HashSet<Integer> dfs(Search criteria) {
+//        // Create a HashSet to store patient IDs from matching leaf nodes
+//        HashSet<Integer> matchedPatientIds = new HashSet<>();
+//
+//        // If this is a leaf node and matches the criteria, add its patient IDs to the result set
+//        if ( this.matches(criteria)){
+//
+//            if (isLeaf() ) {
+//                matchedPatientIds.addAll(this.patientIds);
+//            } else {
+//                // If not a leaf or doesn't match criteria, continue DFS traversal
+//                if (this.left != null) {
+//                    matchedPatientIds.addAll(this.left.dfs(criteria));
+//                }
+//                if (this.right != null) {
+//                    matchedPatientIds.addAll(this.right.dfs(criteria));
+//                }
+//            }
+//        }
+//
+//        return matchedPatientIds;
+//    }
     // Perform DFS on this node and all subtrees
 //    public  HashSet<Integer>  dfs(Search criteria, List<Node> results) {
 //
