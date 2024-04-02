@@ -4,45 +4,40 @@ import me.matthewe.patientsearch.types.AgeNode;
 import me.matthewe.patientsearch.types.GenderNode;
 import me.matthewe.patientsearch.types.Node;
 
+import javax.xml.validation.SchemaFactoryConfigurationError;
 import java.util.*;
 
-public class PatientGraph  extends Node<HashMap<Long,Patient>, GenderNode> {
+public class PatientGraph  extends Node< GenderNode> {
 
-
+    private Map<Integer, Patient> table =new HashMap<>();
     public PatientGraph() {
-        super(new HashMap<>(), new GenderNode(Gender.MALE), new GenderNode(Gender.MALE));
+        super(new GenderNode(Gender.MALE),new GenderNode(Gender.FEMALE));
+        this.root=true;
     }
 
+    public void print() {
+      System.out.println(  toString("",false));
 
-
-    public void print(){
-        StringBuilder out =new StringBuilder();
-
-        out.append("      Gender\n");
-        out.append("    /      \\\n");
-        out.append("   /        \\\n");
-        out.append("  MALE      FEMALE\n");
-        System.out.println(out);
     }
-
-    public void dfs(Search search,   Set<Integer> visited) {
-        if (visited.contains(id)) {
-            return;
-        }
-        visited.add(id);
-
-        // Perform the search at this node and process the matches
-        search(search).
-    }
-
     @Override
-    public GenderNode search(Search search) {
-        if (search.getGender()==Gender.MALE)return left;
-        if (search.getGender()==Gender.FEMALE)return right;
+    public boolean matches(Search criteria) {
 
-        return null;
+        if (criteria.gender==Gender.MALE)return left.matches(criteria);
+        if (criteria.gender==Gender.FEMALE)return right.matches(criteria);
+        return false;//Always allow parent node tracking
     }
 
     public void insert(Patient patient) {
+        table.put((int) patient.getPatientNumber(), patient);
+
+
+        addChild(patient);
+
     }
+
+    public Patient getById(int patientId) {
+        return table.get(patientId);
+    }
+
+
 }

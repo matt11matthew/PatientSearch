@@ -3,12 +3,20 @@ package me.matthewe.patientsearch.types;
 import me.matthewe.patientsearch.Search;
 
 public class  AgeNode extends Node {
-    public AgeNode() {
-        super(null, null, null);
+    private boolean over65;
+
+    public AgeNode( boolean over65) {
+        this.over65=over65;
+        this.left=null;
+        this.right=null;
     }
 
+
     @Override
-    public Node search(Search search) {
-        return null;
+    protected boolean matches(Search criteria) {
+        if (over65){
+            return criteria.getAge()>=65;
+        }
+        return criteria.getAge()<65;
     }
 }

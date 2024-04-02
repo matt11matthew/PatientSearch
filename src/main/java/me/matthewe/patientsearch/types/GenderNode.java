@@ -6,18 +6,21 @@ import me.matthewe.patientsearch.Search;
 import java.util.Random;
 import java.util.UUID;
 
-public class GenderNode  extends Node<Gender, AgeNode>{
+public class GenderNode  extends Node<AgeNode>{
+
+    private Gender gender;
 
 
-    public GenderNode(Gender selfType) {
-        super(selfType, new AgeNode(), new AgeNode());
-        this.id = new Random().nextInt()+1;
+
+    public GenderNode(Gender gender) {
+        super(new AgeNode(false),new AgeNode(true));
+        this.gender = gender;
     }
 
     @Override
-    public AgeNode search(Search search) {
-        if (selfType==Gender.MALE)return left;
-        if (selfType==Gender.FEMALE)return right;
-        return null;
+    public boolean matches(Search criteria) {
+        return this.gender==criteria.getGender();
     }
+
+
 }

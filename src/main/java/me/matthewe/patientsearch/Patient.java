@@ -11,7 +11,7 @@ public class Patient {
     private int age;
     private boolean medicalHistory;
     private long symptomsOnset;
-    private long patientNumber;
+    private int patientNumber;
     private boolean cardiovascularRiskFactors;
     private boolean medsPriorToArrival;
 
@@ -31,7 +31,7 @@ public class Patient {
                 '}';
     }
 
-    public Patient(Gender gender, int age, boolean medicalHistory, long symptomsOnset, long patientNumber, boolean cardiovascularRiskFactors, boolean medsPriorToArrival, PhysicalExam physicalExam) {
+    public Patient(Gender gender, int age, boolean medicalHistory, long symptomsOnset, int patientNumber, boolean cardiovascularRiskFactors, boolean medsPriorToArrival, PhysicalExam physicalExam) {
         this.gender = gender;
         this.age = age;
         this.medicalHistory = medicalHistory;
@@ -58,7 +58,7 @@ public class Patient {
         return symptomsOnset;
     }
 
-    public long getPatientNumber() {
+    public int getPatientNumber() {
         return patientNumber;
     }
 
@@ -86,7 +86,7 @@ public class Patient {
         Instant instant = Instant.parse(obj.get("symptomsOnset").getAsString());
         long symptomsOnset = instant.toEpochMilli();;
 
-        long patientNumber = obj.get("patientNumber").getAsInt();
+        int patientNumber = obj.get("patientNumber").getAsInt();
         boolean cardiovascularRiskFactors = getBooleanFromString(obj.get("cardiovascularRiskFactors").getAsString());
         boolean medsPriorToArrival = getBooleanFromString(obj.get("medsPriorToArrival").getAsString());
 
