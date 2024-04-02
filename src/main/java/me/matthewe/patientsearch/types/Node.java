@@ -42,36 +42,57 @@ public abstract class Node< T extends Node> {
         return builder.toString();
     }
 
+    public HashSet<Integer> dfs(Search criteria) {
+        // Create a HashSet to store patient IDs from matching leaf nodes
+        HashSet<Integer> matchedPatientIds = new HashSet<>();
+
+        // If this is a leaf node and matches the criteria, add its patient IDs to the result set
+        if ( this.matches(criteria)){
+
+            if (isLeaf() ) {
+                matchedPatientIds.addAll(this.patientIds);
+            } else {
+                // If not a leaf or doesn't match criteria, continue DFS traversal
+                if (this.left != null) {
+                    matchedPatientIds.addAll(this.left.dfs(criteria));
+                }
+                if (this.right != null) {
+                    matchedPatientIds.addAll(this.right.dfs(criteria));
+                }
+            }
+        }
+
+        return matchedPatientIds;
+    }
     // Perform DFS on this node and all subtrees
-    public void dfs(Search criteria, List<Node> results) {
-
+//    public  HashSet<Integer>  dfs(Search criteria, List<Node> results) {
+//
+//
 //        if (isLeaf()){
-//            for (Integer patientId : patientIds) {
-//                System.out.println(patientId);
-//            }
+//            return patientIds;
 //        }
+//
+//        if (this.matches(criteria)) {
+//            results.add(this);
+//        }
+//
+//        if (this.left != null) {
+//            this.left.dfs(criteria, results);
+//        }
+//
+//        // Check if right child exists before recursing
+//        if (this.right != null) {
+//            this.right.dfs(criteria, results);
+//        }
+//        return null;
+//
+//    }
 
-        if (!root&&this.matches(criteria)) {
-            results.add(this);
-        }
-
-        // Check if left child exists before recursing
-        if (this.left != null) {
-            this.left.dfs(criteria, results);
-        }
-
-        // Check if right child exists before recursing
-        if (this.right != null) {
-            this.right.dfs(criteria, results);
-        }
-
-    }
-
-    public List<Node> search(Search search){
-        List<Node> nodes = new ArrayList<>();
-        this.dfs(search, nodes);
-        return nodes;
-    }
+//    public List<Node> search(Search search){
+//        List<Node> nodes = new ArrayList<>();
+//        this.dfs(search, nodes);
+//        return nodes;
+//    }
 
     @Override
     public String toString() {

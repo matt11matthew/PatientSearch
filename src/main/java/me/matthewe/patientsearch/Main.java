@@ -36,21 +36,19 @@ public class Main {
             patientGraph.insert(patient);
 
         }
-
-
+        long time = System.currentTimeMillis();
         patientGraph.print();
 
-        for (int i : Arrays.asList(32, 19, 20, 12)) {
-            Patient byId = patientGraph.getById(i);
-            System.out.println(byId);
-        }
-        List<Node> search = patientGraph.search(new Search(Gender.FEMALE, 1));
 
-        for (Node<?> node : search) {
-            for (int patientId : node.getPatientIds()) {
-                Patient byId = patientGraph.getById(patientId);
-                System.err.println(byId.toString());
-            }
+        HashSet<Integer> dfs = patientGraph.dfs(new Search(Gender.FEMALE, 40));
+        System.out.println((System.currentTimeMillis())-time+"ms");
+        if ((dfs == null) || dfs.isEmpty()){
+            System.err.println("No results found");
+            return;
+        }
+        for (int node : dfs) {
+            Patient byId = patientGraph.getById(node);
+            System.out.println(byId.toString());
         }
     }
 }

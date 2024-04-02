@@ -28,7 +28,7 @@ public class PatientGraph  extends Node< GenderNode> {
     }
 
     public void insert(Patient patient) {
-        table.put((int) patient.getPatientNumber(), patient);
+        table.put(patient.getPatientNumber(), patient);
 
 
         addChild(patient);
@@ -39,5 +39,7 @@ public class PatientGraph  extends Node< GenderNode> {
         return table.get(patientId);
     }
 
-
+    public Map<Integer, Patient> getTable() {
+        return table;
+    }
 }
