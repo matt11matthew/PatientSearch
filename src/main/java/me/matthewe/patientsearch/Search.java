@@ -3,61 +3,99 @@ package me.matthewe.patientsearch;
 import java.util.concurrent.TimeUnit;
 
 public class Search {
-    private int id ;
     private Gender gender;
     private int age;
+    private int id = -1;
 
-    private YesNoValue medicalHistory;
-    private YesNoValue cardiovascularRiskFactors;
-    private YesNoValue medsPriorToArrival;
+    public boolean isMedicalHistory() {
+        return medicalHistory;
+    }
+
+    public boolean isCardiovascularRiskFactors() {
+        return cardiovascularRiskFactors;
+    }
+
+    public boolean isMedsPriorToArrival() {
+        return medsPriorToArrival;
+    }
+
+    public boolean isPhysicalExamHeartRate() {
+        return physicalExamHeartRate;
+    }
+
+    public boolean isPhysicalExamKillipClass() {
+        return physicalExamKillipClass;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    private boolean medicalHistory;
+    private boolean cardiovascularRiskFactors;
+    private boolean medsPriorToArrival;
 
 
     private long symptomsOnset; //Check within time range
-    private YesNoValue physicalExamHeartRate;
-    private YesNoValue physicalExamKillipClass;
+    private boolean physicalExamHeartRate;
+    private boolean physicalExamKillipClass;
 
     private SearchType searchType;
 
-    public Search(Gender gender, int age) { //REQUIRED SEARCH
-        id=-1;
+//    public Search(Gender gender, int age) { //REQUIRED SEARCH
+//        id=-1;
+//
+//        this.age=age;//required
+//        this.gender=gender; //required
+//
+//        medicalHistory=new YesNoValue(false,false);
+//        cardiovascularRiskFactors=new YesNoValue(false,true);
+//        medsPriorToArrival=new YesNoValue(false,true);
+//        physicalExamHeartRate=new YesNoValue(false,true);
+//        physicalExamKillipClass=new YesNoValue(false,true);
+//        searchType=SearchType.STRICT; //DEFAULT
+//        symptomsOnset=-1;
+//    }
 
-        this.age=age;//required
-        this.gender=gender; //required
-
-        medicalHistory=new YesNoValue(false,false);
-        cardiovascularRiskFactors=new YesNoValue(false,true);
-        medsPriorToArrival=new YesNoValue(false,true);
-        physicalExamHeartRate=new YesNoValue(false,true);
-        physicalExamKillipClass=new YesNoValue(false,true);
-        searchType=SearchType.STRICT; //DEFAULT
-        symptomsOnset=-1;
+    public Search(Gender gender, int age, boolean medicalHistory, boolean cardiovascularRiskFactors, boolean medsPriorToArrival, long symptomsOnset, boolean physicalExamHeartRate, boolean physicalExamKillipClass, SearchType searchType) {
+        this.gender = gender;
+        this.age = age;
+        this.medicalHistory = medicalHistory;
+        this.cardiovascularRiskFactors = cardiovascularRiskFactors;
+        this.medsPriorToArrival = medsPriorToArrival;
+        this.symptomsOnset = symptomsOnset;
+        this.physicalExamHeartRate = physicalExamHeartRate;
+        this.physicalExamKillipClass = physicalExamKillipClass;
+        this.searchType = searchType;
     }
 
-    public boolean isWithinOneDay(long patientSymptomsOnset) {
-        // Get current time in milliseconds
-        long currentTime = System.currentTimeMillis();
-
-        // Calculate the absolute difference in time
-        long timeDifference = Math.abs(currentTime - symptomsOnset);
-
-        // Convert the time difference to days
-        long daysDifference = TimeUnit.MILLISECONDS.toDays(timeDifference);
-
-        // Check if the difference is less than or equal to 1
-        return daysDifference <= 1;
-    }
+//    public boolean isWithinOneDay() {
+//        // Get current time in milliseconds
+//        long currentTime = System.currentTimeMillis();
+//
+//        // Calculate the absolute difference in time
+//        long timeDifference = Math.abs(symptomsOnset-currentTime );
+//
+//        // Convert the time difference to days
+//        long daysDifference = TimeUnit.MILLISECONDS.toDays(timeDifference);
+//
+//        System.out.println(daysDifference);
+//        // Check if the difference is less than or equal to 1
+//        return daysDifference <= 1;
+//    }
 
     public Search(Patient patient) {
-        id=patient.getPatientNumber();
 
 
         this.age =patient.getAge();
         this.gender=patient.getGender();
-        medicalHistory=new YesNoValue(patient.isMedicalHistory(),false);
-        cardiovascularRiskFactors=new YesNoValue(patient.isCardiovascularRiskFactors(),false);
-        medsPriorToArrival=new YesNoValue(patient.isMedsPriorToArrival(),false);
-        physicalExamHeartRate=new YesNoValue(patient.getPhysicalExam().isHeartRate(), false);
-        physicalExamKillipClass=new YesNoValue(patient.getPhysicalExam().isKillipClass(), false);
+        medicalHistory=patient.isMedicalHistory();
+        cardiovascularRiskFactors=patient.isCardiovascularRiskFactors();
+        medsPriorToArrival=patient.isMedsPriorToArrival();
+        physicalExamHeartRate=patient.getPhysicalExam().isHeartRate();
+
+        physicalExamKillipClass=patient.getPhysicalExam().isKillipClass();
+
         searchType=SearchType.STRICT; //DEFAULT
         symptomsOnset=patient.getSymptomsOnset();
     }
@@ -74,9 +112,6 @@ public class Search {
         return searchType;
     }
 
-    public int getId() {
-        return id;
-    }
 
     public Search setGender(Gender gender) {
         this.gender = gender;
@@ -88,61 +123,18 @@ public class Search {
         return this;
     }
 
-    public Search setMedicalHistory(YesNoValue medicalHistory) {
-        this.medicalHistory = medicalHistory;
-        return this;
-    }
-
-    public Search setCardiovascularRiskFactors(boolean value) {
-        this.cardiovascularRiskFactors.setValue(value);
-        return this;
-    }
-
-    public Search setMedsPriorToArrival(boolean value) {
-        this.medsPriorToArrival.setValue(value);
-        return this;
-    }
-
-    public Search setSymptomsOnset(long symptomsOnset) {
-        this.symptomsOnset = symptomsOnset;
-        return this;
-    }
-
-    public Search setPhysicalExamHeartRate(boolean value) {
-        this.physicalExamHeartRate.setValue(value);
-        return this;
-    }
-
-    public Search setPhysicalExamKillipClass(boolean value) {
-        this.physicalExamKillipClass.setValue(value);
-        return this;
-    }
 
 
 
-    public YesNoValue getMedicalHistory() {
-        return medicalHistory;
-    }
 
-    public YesNoValue getCardiovascularRiskFactors() {
-        return cardiovascularRiskFactors;
-    }
 
-    public YesNoValue getMedsPriorToArrival() {
-        return medsPriorToArrival;
-    }
+
+
 
     public long getSymptomsOnset() {
         return symptomsOnset;
     }
 
-    public YesNoValue getPhysicalExamHeartRate() {
-        return physicalExamHeartRate;
-    }
-
-    public YesNoValue getPhysicalExamKillipClass() {
-        return physicalExamKillipClass;
-    }
 
     /*
         private long symptomsOnset;

@@ -31,7 +31,7 @@ public class GenderNode  extends Node<AgeNode, AgeNode>{
     }
 
     public void insert(Patient patient) {
-        patientIds.add(patient.getPatientNumber());
+//        patientIds.add(patient.getPatientNumber());
         if (patient.getAge()<=65){
             left.insert(patient);
         } else {

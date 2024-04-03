@@ -2,6 +2,7 @@ package me.matthewe.patientsearch.nodes;
 
 import me.matthewe.patientsearch.Patient;
 import me.matthewe.patientsearch.Search;
+import me.matthewe.patientsearch.YesNoValue;
 import me.matthewe.patientsearch.types.Node;
 
 public class CardiovascularRiskFactorsNode extends Node<MedsNode, MedsNode> {
@@ -10,7 +11,7 @@ public class CardiovascularRiskFactorsNode extends Node<MedsNode, MedsNode> {
 
     }
     @Override
-    public boolean matches( Search search, boolean isLeft) {
+    public boolean matches(Search search, boolean isLeft) {
         return true;
     }
 

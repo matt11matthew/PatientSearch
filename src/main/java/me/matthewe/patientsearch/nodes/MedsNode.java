@@ -19,7 +19,9 @@ public class MedsNode  extends Node<BooleanNode, BooleanNode> {
 
     @Override
     public boolean matches( Search search, boolean isLeft) {
-        return true;
+        if (isLeft&&search.isMedsPriorToArrival())return true;
+        if (!isLeft&&!search.isMedsPriorToArrival())return true;
+      return false;
     }
 
     @Override

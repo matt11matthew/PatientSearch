@@ -47,22 +47,17 @@ public class Main {
         patientGraph.print();
 
 
-        Search search = new Search(Gender.MALE,70)
-                .setCardiovascularRiskFactors(true)
-                .setSearchType(SearchType.STRICT);
-
-        DFS dfs=new DFS();
-
-        Set<Integer> matches = dfs.findMatches(patientGraph, search);
-
-        StringBuilder out = new StringBuilder();
-        for (int id : matches) {
-            out.append(patientGraph.getById(id)+"\n");
+        Search search = new Search(Gender.FEMALE,70,true,true,true,System.currentTimeMillis(), true,true,SearchType.STRICT);
+        for (Patient patient : patientGraph.search(search)) {
+            System.out.println(patient);
         }
-        System.out.println(out);
 
 
         System.out.println((System.currentTimeMillis()-time)+"ms"); //RUNTIME
+//        String json = GSON.toJson(patientGraph);
+//        System.out.println(json);
+
+
     }
 
 

@@ -24,12 +24,8 @@ public class  AgeNode extends Node<CardiovascularRiskFactorsNode, SymptomsOnsetN
     @Override
     public boolean matches( Search search, boolean isLeft) {
 
-        if (!search.getCardiovascularRiskFactors().isUnset()){
-
-            return true;
-        }
-
-        return true;
+        if (search.isCardiovascularRiskFactors()&&isLeft)return true;
+        return false;
     }
 
     @Override
