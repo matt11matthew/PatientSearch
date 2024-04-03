@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 
 import java.time.Instant;
 import java.time.ZonedDateTime;
+import java.util.concurrent.TimeUnit;
 
 public class Patient {
     private Gender gender;
@@ -16,6 +17,17 @@ public class Patient {
     private boolean medsPriorToArrival;
 
     private PhysicalExam physicalExam;
+
+    public boolean isWithinOneDayOfSymptoms(long searchValue) {
+        // Calculate the absolute difference in time between searchValue and symptomsOnset
+        long timeDifference = Math.abs(searchValue - symptomsOnset);
+
+        // Convert the time difference to days
+        long daysDifference = TimeUnit.MILLISECONDS.toDays(timeDifference);
+
+        // Check if the difference is less than or equal to 1
+        return daysDifference <= 1;
+    }
 
     @Override
     public String toString() {

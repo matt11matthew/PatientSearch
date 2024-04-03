@@ -4,22 +4,26 @@ import me.matthewe.patientsearch.Patient;
 import me.matthewe.patientsearch.Search;
 import me.matthewe.patientsearch.types.Node;
 
-public class CardiovascularRiskFactorsNode extends Node<MedsNode, GroupBooleanNode> {
+public class CardiovascularRiskFactorsNode extends Node<MedsNode, MedsNode> {
     public CardiovascularRiskFactorsNode() {
-        super(new MedsNode(), new GroupBooleanNode() {
-            @Override
-            protected boolean matches(Search criteria) {
-                return !criteria.getTempPatient().isCardiovascularRiskFactors();
-            }
-        });
+        super(new MedsNode(true), new MedsNode(false));
+
+    }
+    @Override
+    public boolean matches( Search search, boolean isLeft) {
+        return true;
     }
 
     @Override
-    protected boolean matches(Search criteria) {
+    public void insert(Patient patient) {
+        if (patient.isMedsPriorToArrival()){
+            left.insert(patient);
+        } else {
+            right.insert(patient);
 
-        Patient tempPatient = criteria.getTempPatient();
-        if (tempPatient.isCardiovascularRiskFactors())return true;
-//        if (tempPatient.isCardiovascularRiskFactors())
-        return false;
+        }
+//        patientIds.add(patient.getPatientNumber());
     }
+
+
 }

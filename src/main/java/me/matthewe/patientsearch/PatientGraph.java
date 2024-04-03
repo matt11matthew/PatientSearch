@@ -5,7 +5,6 @@ import me.matthewe.patientsearch.types.AgeNode;
 import me.matthewe.patientsearch.types.GenderNode;
 import me.matthewe.patientsearch.types.Node;
 
-import javax.xml.validation.SchemaFactoryConfigurationError;
 import java.util.*;
 
 public class PatientGraph  extends Node< GenderNode,GenderNode> {
@@ -17,6 +16,45 @@ public class PatientGraph  extends Node< GenderNode,GenderNode> {
         this.root=true;
     }
 
+    @Override
+    public boolean matches( Search search, boolean isLeft) {
+        if (search.getGender()==Gender.MALE){
+            return left.matches(search, isLeft);
+
+        }
+        return right.matches(search, isLeft);
+    }
+
+
+    private  void  strictDFS(Search criteria, List<Node> matchingNodes) {
+
+
+        if (left!=null&&left.isLeaf()){
+            System.out.println(left);
+        }
+        if (right!=null&&right.isLeaf()){
+            System.out.println(right);
+        }
+
+
+    }
+
+    public List<Patient> search(Search search) {
+        if (search.getId() != -1) return Collections.singletonList(table.get(search.getId()));//O(1)
+
+        List<Patient> resList=new ArrayList<>();
+        List<Node> nodes =new ArrayList<>();
+
+
+//        strictDfs(search,nodes);
+
+        for (Node node : nodes) {
+            for (Object patientId : node.getPatientIds()) {
+                resList.add(table.get(patientId));
+            }
+        }
+        return resList;
+    }
     /*
 
 
@@ -78,19 +116,20 @@ ANOTHER
       System.out.println(  toString("",false));
 
     }
-    @Override
-    public boolean matches(Search criteria) {
 
-        if (criteria.gender==Gender.MALE)return left.matches(criteria);
-        if (criteria.gender==Gender.FEMALE)return right.matches(criteria);
-        return false;//Always allow parent node tracking
-    }
 
     public void insert(Patient patient) {
         table.put(patient.getPatientNumber(), patient);
 
 
-        addChild(patient);
+        if (patient.isMale()){
+            left.insert(patient);
+        } else {
+            //INSERT RIGHT
+            right.insert(patient);
+
+        }
+//        addChild(patient);
 
     }
 
@@ -100,5 +139,11 @@ ANOTHER
 
     public Map<Integer, Patient> getTable() {
         return table;
+    }
+
+    public void check(int... ints) {
+        for (int anInt : ints) {
+            System.out.println(table.get(anInt));
+        }
     }
 }

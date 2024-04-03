@@ -6,9 +6,9 @@ import me.matthewe.patientsearch.Search;
 import java.util.*;
 
 public abstract class Node< A extends Node,B extends Node> {
-    protected int id; //related to graph traversal
-//    protected V selfType;
+    protected int id;
 
+    public abstract boolean matches( Search search, boolean isLeft);
     protected boolean root = false;
     public Set<Integer> getPatientIds() {
         return patientIds;
@@ -41,100 +41,7 @@ public abstract class Node< A extends Node,B extends Node> {
 
         return builder.toString();
     }
-    public void dfs(Search criteria, List<Node> matchingNodes) {
-        // Check if this node matches the criteria
-        if (matches(criteria)) {
-            // If this is a leaf node, add it to the list of matching nodes
-            if (isLeaf()) {
-                matchingNodes.add(this);
-            }
-        }
 
-        // Continue DFS traversal if this is not a leaf node
-        if (!isLeaf()) {
-            if (left!=null) {
-                if (left instanceof GenderNode || left instanceof AgeNode ) { //No backtracking  in relation to sex/age range
-                    if ( left.matches(criteria)) {
-
-                        left.dfs(criteria, matchingNodes);
-                    }
-
-                } else {
-                    left.dfs(criteria, matchingNodes);
-
-                }
-            }
-
-
-            if (right!=null) {
-                if (right instanceof GenderNode|| left instanceof AgeNode ) { //No backtracking  in relation to sex/age range
-                    if ( right.matches(criteria)) {
-
-                        right.dfs(criteria, matchingNodes);
-                    }
-
-                } else {
-                    right.dfs(criteria, matchingNodes);
-
-                }
-            }
-//            if (right != null) {
-//                right.dfs(criteria, matchingNodes);
-//            }
-        }
-    }
-
-//    public HashSet<Integer> dfs(Search criteria) {
-//        // Create a HashSet to store patient IDs from matching leaf nodes
-//        HashSet<Integer> matchedPatientIds = new HashSet<>();
-//
-//        // If this is a leaf node and matches the criteria, add its patient IDs to the result set
-//        if ( this.matches(criteria)){
-//
-//            if (isLeaf() ) {
-//                matchedPatientIds.addAll(this.patientIds);
-//            } else {
-//                // If not a leaf or doesn't match criteria, continue DFS traversal
-//                if (this.left != null) {
-//                    matchedPatientIds.addAll(this.left.dfs(criteria));
-//                }
-//                if (this.right != null) {
-//                    matchedPatientIds.addAll(this.right.dfs(criteria));
-//                }
-//            }
-//        }
-//
-//        return matchedPatientIds;
-//    }
-    // Perform DFS on this node and all subtrees
-//    public  HashSet<Integer>  dfs(Search criteria, List<Node> results) {
-//
-//
-//        if (isLeaf()){
-//            return patientIds;
-//        }
-//
-//        if (this.matches(criteria)) {
-//            results.add(this);
-//        }
-//
-//        if (this.left != null) {
-//            this.left.dfs(criteria, results);
-//        }
-//
-//        // Check if right child exists before recursing
-//        if (this.right != null) {
-//            this.right.dfs(criteria, results);
-//        }
-//        return null;
-//
-//    }
-
-//    public List<Node> search(Search search){
-//        List<Node> nodes = new ArrayList<>();
-//        this.dfs(search, nodes);
-//        return nodes;
-//    }
 
     @Override
     public String toString() {
@@ -146,28 +53,11 @@ public abstract class Node< A extends Node,B extends Node> {
                 '}';
     }
 
-    //        public List<T> search(Search criteria) {
-//        List<T> matches = new ArrayList<>();
-//        // Check if this node matches the criteria
-//        if (left.matches(criteria)) {
-//            matches.add(left);
-//        }
-//        if (right.matches(criteria)) {
-//            matches.add(right);
-//        }
-//        // Include logic to check for matches and add to the list
-//        return matches;
-//    }
     public boolean isLeaf() {
         return this.left==null&&right==null;
     }
 
-    protected abstract boolean matches(Search criteria);
-
-
-//    public abstract Node search(Search search);//FINDS CONNECTED NODES
-
-    private HashSet<Integer> patientIds = new HashSet<>();
+    protected HashSet<Integer> patientIds = new HashSet<>();
 
     public void addPatientId(int id) {
         patientIds.add(id);
@@ -178,53 +68,6 @@ public abstract class Node< A extends Node,B extends Node> {
         this.right = right;
         this.id = new Random().nextInt() + 1;
     }
-    public boolean addChild(Patient patient) {
-        // If the current node is a leaf, add the patient ID to this node
-        if (isLeaf()) {
-            // Add the patient ID if the node matches the patient's criteria
-            if (matches(new Search(patient))) {
-                patientIds.add(patient.getPatientNumber());
-                return true; // Patient added, end the recursion
-            }
-        } else {
-            // If it's not a leaf, try to add the patient to the left and right subtrees
-            boolean added = false; // Flag to track if the patient was added in any subtree
-            for (Node child : Arrays.asList(left, right)) {
-                if (child != null && child.matches(new Search(patient))) {
-                    // If a child matches, try to add the patient there
-                    added |= child.addChild(patient); // Use bitwise OR to accumulate results from all children
-                }
-            }
-            return added; // Return true if the patient was added to any subtree, otherwise false
-        }
-        return false; // Patient could not be added to any subtree or this node is not a leaf
-    }
-
-
-//    public boolean addChild(Patient patient) {
-//        // If the current node is a leaf, add the patient ID to this node
-//        Search search = new Search(patient);
-//        if (isLeaf() && matches(search)) {
-//            patientIds.add(patient.getPatientNumber());
-//            return true; // Patient added, end the recursion
-//        } else {
-//            // If it's not a leaf, try to add the patient to the left and right subtrees
-//            for (Node child : Arrays.asList(left, right)) {
-//                if (child != null && child.matches(search)) {
-//                    // If a child matches, try to add the patient there
-//                    boolean added = child.addChild(patient);
-//                    if (added) {
-//                        return true; // Patient added successfully, propagate success back up
-//                    }
-//                    // Implicit backtracking occurs here as we finish one recursive call without success
-//                    // and continue to the next child (if any)
-//                }
-//            }
-//        }
-//        return false; // Patient could not be added to any subtree
-//    }
-
-// Ensure `matches` method in `Node` class is defined to use the `Search` object
 
     private static Random RAND = new Random();
 
@@ -241,4 +84,5 @@ public abstract class Node< A extends Node,B extends Node> {
         return right;
     }
 
+    public abstract void insert(Patient patient);
 }
